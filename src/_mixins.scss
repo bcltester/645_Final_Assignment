@@ -1,0 +1,46 @@
+// MIXIN TO SET HEADER FONT PROPERTIES
+@mixin fontProps($color: #000000, $font-weight: 400, $font-size: 1em) {
+    color:          $color;
+    font-weight:    $font-weight;
+    font-size:      $font-size;
+}
+
+// MIXIN TO SET MARGINS ALL AT ONCE
+@mixin marginSet($args...) {
+    @if length($args) == 4 {
+        @for $index from 1 through length($args) {
+            @if $index == 1 and nth($args, $index) != "x" {
+                margin-top: nth($args, $index);
+            } @else if $index == 2 and nth($args, $index) != "x" {
+                margin-right: nth($args, $index);
+            } @else if $index == 3 and nth($args, $index) != "x" {
+                margin-bottom: nth($args, $index);
+            } @else if $index == 4 and nth($args, $index) != "x" {
+                margin-left: nth($args, $index);
+            }
+        }
+    }
+}
+
+// MIXIN TO SET PADDING ALL AT ONCE
+@mixin paddingSet($args...) {
+    @if length($args) == 4 {
+        @for $index from 1 through length($args) {
+            @if $index == 1 and nth($args, $index) != "x" {
+                padding-top: nth($args, $index);
+            } @else if $index == 2 and nth($args, $index) != "x" {
+                padding-right: nth($args, $index);
+            } @else if $index == 3 and nth($args, $index) != "x" {
+                padding-bottom: nth($args, $index);
+            } @else if $index == 4 and nth($args, $index) != "x" {
+                padding-left: nth($args, $index);
+            }
+        }
+    }
+}
+
+// SET WIDTH AND HEIGHT
+@mixin widthHeight($width: 100%, $height: 90px) {
+    width: $width;
+    height: $height;
+}

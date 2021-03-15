@@ -1,0 +1,188 @@
+/* BASIC STYLES */
+
+body {
+    font-family:    $font-body, sans-serif;
+    font-size:      1em;
+    line-height:    2em;
+    background:     url($img-background) $white repeat-x;
+    @include        marginSet(0, 0, 0, 0);
+}
+
+main {
+    width:      940px;
+    @include    marginSet(0, auto, 0, auto);
+    @include    paddingSet(0, 10px, 0, 10px);
+}
+
+
+
+/* NAVIGATION */
+
+%nav-fig {
+    float:      left;
+}
+
+figure {
+    @extend     %nav-fig;
+    @include    widthHeight(400px, 190px);
+    background: url($img-logo) no-repeat 0 50px;
+    display:    block;
+    margin:     0;
+
+}
+
+nav {
+    @extend     %nav-fig;
+    @include    widthHeight(540px, 190px);
+    text-align: right;
+
+    ul {
+        list-style-type:    none;
+        margin-top:         95px;
+
+        li {
+            display:        inline;
+            font-size:      0.8em;
+            margin-right:   10px;
+
+            a {
+                color:              $orange;
+                text-decoration:    none;
+                letter-spacing:     -0.01em;
+
+                &:hover {
+                    color:          $white;
+                }
+            }
+        }
+    }
+}
+
+/* HEADER */
+
+header {
+    width:          inherit;
+    clear:          both;
+    text-align:     center;
+    @include        paddingSet(40px, x, x, x);
+
+    img {
+        max-width:  100%;
+        height:     auto;
+    }
+
+    %lineHeight {
+        line-height: 0;
+    }
+
+    h1 {
+        @include    fontProps($orange, 100, 4em);
+        @extend     %lineHeight;
+    }
+
+    h2 {
+        @include    fontProps($white, 900, 2.5em);
+        @extend     %lineHeight;
+        @include    marginSet(x, x, 70px, x);
+    }
+
+    h3 {
+        @include    fontProps($graphite, 400, 2em);
+        @extend     %lineHeight;
+        @include    marginSet(x, x, 50px, x);
+    }
+
+}
+
+/* CONTENT */
+
+#headline {
+    @include    widthHeight(100%, 130px);
+    background: $banner-orange;
+    text-align: center;
+    @include    marginSet(0, auto, 0, auto);
+
+    h1 {
+        @include fontProps($white, 100, 2.5em);
+        @include paddingSet(50px, x, x, x);
+    }
+}
+
+#content {
+    width:      940px;
+    @include    marginSet(20px, auto, 20px, auto);
+
+    h3 {
+        @include    fontProps($graphite, 400, 2em);
+    }
+
+    #products {
+        width:  460px;
+        float:  left;
+
+        img {
+            float:  left;
+            @include    marginSet(x, 20px, x, x);
+        }
+
+        article {
+            @include    marginSet(x, x, 40px, x);
+        }
+
+        h4 {
+            line-height:    1em;
+        }
+    }
+
+    #testimonials {
+        width:  460px;
+        float:  right;
+    }
+}
+
+/*  FOOTER  */
+
+.greybar {
+    @include    widthHeight(100%, 90px);
+    background: $greybar;
+    clear:      both;
+    @include    paddingSet(30px, x, x, x);
+}
+
+footer {
+    @include    widthHeight(100%, 120px);
+    background: $navy-gray;
+    text-align: center;
+    color: $white;
+    @include    paddingSet(50px, x, x, x);
+}
+
+$social-icons: (
+    one: 0,
+    two: -38px,
+    three: -76px,
+    four: -114px
+);
+
+.social-media {
+    @include    marginSet(0, auto, 0, auto);
+    width:      165px;
+
+    div {
+        float:      left;
+        @include    marginSet(x, 5px, x, x);
+    }
+
+    a {
+        display:    block;
+        @include    widthHeight(36px, 36px);
+        text-indent:    -9999px;
+    }
+
+    @each $ordinal, $value in $social-icons {
+        div.#{$ordinal} {
+            background: url($img-social-media) $value 0;
+        }
+    }
+}
+
