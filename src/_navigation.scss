@@ -12,6 +12,12 @@ main {
     width:      940px;
     @include    marginSet(0, auto, 0, auto);
     @include    paddingSet(0, 10px, 0, 10px);
+    @include break($mq-lg) {
+        width: 768px;
+    }
+    @include break($mq-md) {
+        width: 460px;
+    }    
 }
 
 
@@ -28,6 +34,12 @@ figure {
     background: url($img-logo) no-repeat 0 50px;
     display:    block;
     margin:     0;
+    @include break($mq-lg) {
+        width: inherit;
+        height: 140px;
+        float: none;
+        background-position: center;
+    }
 
 }
 
@@ -35,15 +47,32 @@ nav {
     @extend     %nav-fig;
     @include    widthHeight(540px, 190px);
     text-align: right;
+    @include break($mq-lg) {
+        width: inherit;
+        height: 50px;
+        float: none;
+        text-align: center;
+    }
 
     ul {
         list-style-type:    none;
         margin-top:         95px;
+        @include break($mq-lg) {
+            @include    marginSet(0, x, x, x);
+        }
 
         li {
             display:        inline;
-            font-size:      0.8em;
+            font-size:      $li-text;
             margin-right:   10px;
+            @include break($mq-lg) {
+                font-size:  1.25 * $li-text;
+                @include    marginSet(0, 10px, 0, 10px);
+            }
+            @include break($mq-md) {
+                font-size:  $li-text;
+                @include    marginSet(0, 5px, 0, 5px);
+            }
 
             a {
                 color:              $orange;
@@ -56,6 +85,7 @@ nav {
             }
         }
     }
+
 }
 
 /* HEADER */
@@ -69,6 +99,9 @@ header {
     img {
         max-width:  100%;
         height:     auto;
+        @include break($mq-md) {
+            @include marginSet(x, x, 100px, x);
+        } 
     }
 
     %lineHeight {
@@ -78,18 +111,33 @@ header {
     h1 {
         @include    fontProps($orange, 100, 4em);
         @extend     %lineHeight;
+        @include break($mq-lg) {
+            font-size:  3.75 * $li-text;
+        }        
+        @include break($mq-md) {
+            font-size:  2.25 * $li-text;
+        }
     }
 
     h2 {
         @include    fontProps($white, 900, 2.5em);
         @extend     %lineHeight;
         @include    marginSet(x, x, 70px, x);
+        @include break($mq-lg) {
+            font-size:  1.9 * $li-text;
+        }        
+        @include break($mq-md) {
+            font-size:  1.25 * $li-text;
+        }        
     }
 
     h3 {
         @include    fontProps($graphite, 400, 2em);
         @extend     %lineHeight;
         @include    marginSet(x, x, 50px, x);
+        @include break($mq-md) {
+            font-size:  1.9 * $li-text;
+        }
     }
 
 }
@@ -105,12 +153,19 @@ header {
     h1 {
         @include fontProps($white, 100, 2.5em);
         @include paddingSet(50px, x, x, x);
+        @include break($mq-md) {
+            font-size:  2.5 * $li-text;
+            @include    paddingSet(50px, x, x, x);
+        }
     }
 }
 
 #content {
     width:      940px;
     @include    marginSet(20px, auto, 20px, auto);
+    @include break($mq-lg) {
+        width: inherit;
+    }
 
     h3 {
         @include    fontProps($graphite, 400, 2em);
@@ -138,6 +193,19 @@ header {
         width:  460px;
         float:  right;
     }
+    @include break($mq-lg) {
+        #products, #testimonials {
+            width:  46%;
+            @include marginSet(0, 2%, 0, 2%);
+        }
+    }        
+    @include break($mq-md) {
+        #products, #testimonials {
+            width:  96%;
+            @include marginSet(0, 2%, 0, 2%);
+            float:  none;
+        }
+    }        
 }
 
 /*  FOOTER  */
@@ -186,3 +254,55 @@ $social-icons: (
     }
 }
 
+// Decided to consolidate media query for smallest screen size in one place instead of dispersing them within each element
+
+@include break($mq-sm) {
+    main {
+        width: 300px;
+    }
+    figure {
+        background-size: contain;
+        height: 100px;
+    }
+    nav {
+        @include marginSet(x, x, 40px !important, x);
+    }
+    select {
+        width: 95%;
+    }
+    #headline h1 {
+        font-size: 1.9 * $li-text;
+        @include paddingSet(30px, x, x, x);
+    }
+    header {
+        img {
+            @include marginSet(x, x, 80px, x);
+        }
+        h1:first-child {
+            font-size: 1.4em;
+            @include marginSet(x, x, 20px, x);
+        }
+        h2 {
+            font-size: 1.4em;
+        }
+        h3 {
+            color: $white;
+            font-size: 1.25 * $li-text;
+        }
+    }
+    #content {
+        h3 {
+            font-size: 2 * $li-text;
+        }
+    }
+    .greybar, article img {
+        display: none;
+    }
+    footer {
+        text-align: center;
+        p, img {
+            float: none;
+            @include marginSet(0, 0, 0, 0);
+        }
+    }
+}

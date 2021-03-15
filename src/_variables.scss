@@ -1,6 +1,7 @@
 /* FONTS */
 
 $font-body: 'Roboto';
+$li-text: .8em;
 
 
 
@@ -21,3 +22,9 @@ $img-background: '../images/bg.gif';
 $img-logo: '../images/logo.png';
 $img-social-media: '../images/social-media.png';
 
+
+/* MEDIA QUERIES */
+
+$mq-lg: 959px;
+$mq-md: 767px;
+$mq-sm: 459px;
